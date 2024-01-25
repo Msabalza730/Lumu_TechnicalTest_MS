@@ -57,6 +57,9 @@ def send_to_lumu(chunk_data):
 
 
 def print_statistics(client_ip_counter, host_counter, total_records):
+    """
+        Function to print the statistics
+    """
     print("Total records {}\n".format(total_records))
     
     print("Client IPs Rank")
