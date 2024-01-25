@@ -4,21 +4,21 @@
 """
 
 import requests
+from collections import Counter
 
+def dns_file_parse(file_path):
+    dns_data = []
 
-def dns_file_parse(filename):
-    """
-        Method to open file, read the queries file and parser
-    """
-    data = []
+    with open(file_path, 'r') as file:
+        for line in file:
+            parts = line.strip().split()
+            if len(parts) >= 7:
+                timestamp = " ".join(parts[:3])
+                client_ip = parts[9]
+                host = parts[-2][:-1]
+                dns_data.append((timestamp, client_ip, host))
 
-    with open(filename, 'r') as filename:
-        for line in filename:
-            p = line.strip().split()
-            if len(p) == 2:
-                ip_client, host, port = p
-                data.append((ip_client,host))
-    return data
+    return dns_data
 
 
 def send2_Lumu(chunk):
@@ -70,9 +70,4 @@ def statics(records, client_ip_rank, host_rank):
         print(f"{host} {count} {percentage:.2f}%")
     print("------------------------------------------------------------ --- -----")
 
-if __name__ == "__main__":
-    filename = "queries"
-    parsed_data = dns_file_parse(filename)
 
-    for record in parsed_data:
-        print(record)
