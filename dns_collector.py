@@ -50,7 +50,25 @@ def send2_Lumu(chunk):
         print(f"Error Connection: {e}")
 
 
+def statics(records, client_ip_rank, host_rank):
+    """
+        Function to print a static of the parsed data
+    """
+    print(f"Total records {len(records)}")
 
+    print("Client IPs Rank")
+    print("--------------- --- -----")
+    for ip, count in client_ip_rank:
+        percentage = (count / len(records)) * 100
+        print(f"{ip} {count} {percentage:.2f}%")
+    print("--------------- --- -----")
+
+    print("Host Rank")
+    print("------------------------------------------------------------ --- -----")
+    for host, count in host_rank:
+        percentage = (count / len(records)) * 100
+        print(f"{host} {count} {percentage:.2f}%")
+    print("------------------------------------------------------------ --- -----")
 
 if __name__ == "__main__":
     filename = "queries"
