@@ -20,7 +20,11 @@ def dns_file_parse(filename):
                 data.append((ip_client,host))
     return data
 
+
 def send2_Lumu(chunk):
+    """
+        Method to sent data to Lumu
+    """
     api_lumu = "https://api.lumu.io/collectors/custom-collectors/collector-id/send-dns-queries"
     lumu_client_key = "d39a0f19-7278-4a64-a255-b7646d1ace80"
     collector_id = "5ab55d08-ae72-4017-a41c-d9d735360288 "
@@ -44,6 +48,7 @@ def send2_Lumu(chunk):
             print("Error sending data to Lumu Technologies %s" % response.status_code)
     except Exception as e:
         print(f"Error Connection: {e}")
+
 
 
 
