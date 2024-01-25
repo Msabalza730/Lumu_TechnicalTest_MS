@@ -1,7 +1,9 @@
-"""
+""" 
+    **********************************************************
         Python Script to collect queries from DNS
         Develop By Maryori Sabalza Mejia
-"""
+    **********************************************************
+""" 
 import argparse
 import re
 import requests
@@ -91,10 +93,9 @@ def main():
     client_ip_counter, host_counter = dns_file_parse(filename)
     total_records = sum(client_ip_counter.values())
 
-    # Print statistics
     print_statistics(client_ip_counter, host_counter, total_records)
 
-    # Uncomment the following lines to send data to Lumu
+    # Send data to Lumu
     data = [{"client_ip": ip, "count": count} for ip, count in client_ip_counter.items()]
     send_to_lumu(data)
 
