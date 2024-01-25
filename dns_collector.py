@@ -24,7 +24,7 @@ def dns_file_parse(filename):
     return dns_data
 
 
-def send2_Lumu(chunk_data):
+def send_to_lumu(chunk_data):
     """
         Method to sent data to Lumu
     """
@@ -74,3 +74,27 @@ def statistics_print(records, client_ip_rank, host_rank):
     print("------------------------------------------------------------ --- -----")
 
 
+def main(file_path):
+    """
+        Principal function to send data parser to LUMU and show the result
+    """
+
+    dns_data = dns_file_parse(file_path)
+
+    client_ips = [ip for _, ip, _ in dns_data]
+    hosts = [host for _, _, host in dns_data]
+
+    client_ip_rank = Counter(client_ips).most_common()
+    host_rank = Counter(hosts).most_common()
+
+    statistics_print(dns_data, client_ip_rank, host_rank)
+
+    chunk_size = 500
+    for i in range(0, len(dns_data), chunk_size):
+        chunk_data = dns_data[i:i + chunk_size]
+        send_to_lumu(chunk_data)
+
+
+if __name__ == "__main__":
+    input_file = "queries"
+    main(input_file)
