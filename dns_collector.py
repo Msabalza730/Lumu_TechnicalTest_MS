@@ -24,7 +24,7 @@ def dns_file_parse(filename):
     return dns_data
 
 
-def send2_Lumu(chunk):
+def send2_Lumu(chunk_data):
     """
         Method to sent data to Lumu
     """
@@ -38,8 +38,8 @@ def send2_Lumu(chunk):
     }
 
     payload = {
-        "Collector-ID": collector_id,
-        "queries_dns": chunk
+        "CollectorID": collector_id,
+        "queriesDNS": chunk_data
     }
 
     try:
@@ -53,7 +53,7 @@ def send2_Lumu(chunk):
         print(f"Error Connection: {e}")
 
 
-def statics(records, client_ip_rank, host_rank):
+def statistics_print(records, client_ip_rank, host_rank):
     """
         Function to print a static of the parsed data
     """
