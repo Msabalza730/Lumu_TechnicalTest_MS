@@ -12,7 +12,7 @@ def dns_file_parse(filename):
     """
     dns_data = []
 
-    with open(file_path, 'r') as file:
+    with open(filename, 'r') as file:
         for line in file:
             parts = line.strip().split()
             if len(parts) >= 7:
