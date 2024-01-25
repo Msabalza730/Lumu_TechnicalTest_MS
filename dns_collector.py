@@ -6,7 +6,10 @@
 import requests
 from collections import Counter
 
-def dns_file_parse(file_path):
+def dns_file_parse(filename):
+    """
+        Method to open file, read the queries file and parser
+    """
     dns_data = []
 
     with open(file_path, 'r') as file:
