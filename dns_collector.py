@@ -84,7 +84,6 @@ def main():
     """
         Principal function to send data parser to LUMU and show the result
     """
-
     parser = argparse.ArgumentParser(description="Parse BIND Server log and send data to Lumu")
     parser.add_argument("filename", help="Path to the BIND Server log file")
     args = parser.parse_args()
