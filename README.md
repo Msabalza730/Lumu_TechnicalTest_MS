@@ -1,10 +1,11 @@
 # Lumu_TechnicalTest_MS
-Technical Test Python Developer LUMU Technologies
+Technical Test Python Developer LUMU Technologies By Maryori Sabalza
 
 
 ## How to run:
 
 - Create a Virtual Env
+- Activate virtual env: source myenv/bin/activate
 - Run the script: 
     - git python dns_collector.py bind_server.log
 
