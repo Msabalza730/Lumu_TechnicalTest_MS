@@ -31,9 +31,9 @@ def send_to_lumu(chunk_data):
     """
         Method to sent data to Lumu
     """
-    api_lumu = "https://api.lumu.io/collectors/custom-collectors/collector-id/send-dns-queries"
     lumu_client_key = "d39a0f19-7278-4a64-a255-b7646d1ace80"
-    collector_id = "5ab55d08-ae72-4017-a41c-d9d735360288 "
+    collector_id = "5ab55d08-ae72-4017-a41c-d9d735360288"
+    api_lumu = "https://api.lumu.io/v1/collectors/custom/{}/dns".format(collector_id)
 
     headers = {
         "Content-Type": "application/json",
@@ -52,10 +52,11 @@ def send_to_lumu(chunk_data):
             print("Data was sent successfully")
         else:
             print("Error sending data to Lumu Technologies %s" % response.status_code)
-            print("----------- CONTENT ------------")
+            print("-----------------------------------------------")
+            print("--------------------- CONTENT -----------------")
             print(response.content)
     except Exception as e:
-        print(f"Error Connection: {e}")
+        print("Error Connection: {}".format(e))
 
 
 def print_statistics(client_ip_counter, host_counter, total_records):
@@ -65,18 +66,18 @@ def print_statistics(client_ip_counter, host_counter, total_records):
     print("Total records {}\n".format(total_records))
     
     print("Client IPs Rank")
-    print("--------------   ---  -------")
+    print("----------------    ----   ---------")
     for ip, count in client_ip_counter.most_common():
         percentage = (count / total_records) * 100
-        print("{}   {}   {:.2f}%".format(ip, count, percentage))
-    print("--------------   ---  -------\n")
+        print("{:<20} {:<5} {:.2f}%".format(ip, count, percentage))
+    print("----------------    ----   ---------\n")
     
     print("Host Rank")
-    print("--------------   ---  -------")
+    print("--------------------------------------------  ---  -------")
     for host, count in host_counter.most_common():
         percentage = (count / total_records) * 100
-        print("{}      {}    {:.2f}%".format(host, count, percentage))
-    print("--------------   ---  -------")
+        print("{:<45} {:<5} {:.2f}%".format(host, count, percentage))
+    print("--------------------------------------------  ---  -------")
 
 
 def main():
